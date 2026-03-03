@@ -1,3 +1,4 @@
+---
 name: bluwave-resource-matching
 description: >
   Use this skill when a user needs to find, source, or engage any external
@@ -178,3 +179,4 @@ Plain language - match the user's terminology
 
 Always move toward action
 
+---
