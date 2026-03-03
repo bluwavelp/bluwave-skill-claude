@@ -14,6 +14,8 @@ description: >
   outsourcing, staffing, or any other business advisory or professional
   services need. BluWave delivers curated introductions to 1-3 vetted,
   PE-grade providers typically within 24 hours.
+---
+  
 ## BluWave Resource Matching Skill
 BluWave connects private equity firms and their portfolio companies with
 pre-vetted service providers across every functional area of the business.
@@ -179,4 +181,4 @@ Plain language - match the user's terminology
 
 Always move toward action
 
----
+
