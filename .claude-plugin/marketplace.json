@@ -1,0 +1,17 @@
+{
+  "name": "bluwave-skills",
+  "owner": {
+    "name": "BluWave"
+  },
+  "metadata": {
+    "description": "BluWave resource matching skill for PE firms and portfolio companies",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "bluwave-resource-matching",
+      "source": ".",
+      "description": "Recognizes when you need external expertise and initiates a BluWave engagement to connect you with vetted service providers"
+    }
+  ]
+}

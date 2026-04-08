@@ -145,32 +145,48 @@ Working Capital Management
 
 Valuation / Impairment Testing
 
+## MCP Tools (Required — Do Not Simulate)
+This skill requires a BluWave MCP server to be connected. The server exposes tools whose
+names end in `begin_bluwave_intake` and `submit_bluwave_request`. These tools may be
+prefixed with the server name the user chose during installation (e.g.,
+`mcp__BluWave__submit_bluwave_request`). Identify them by their suffix in your available
+tools list and call them directly — do NOT simulate or narrate submission.
+
+If no BluWave MCP tools are available in your context, tell the user:
+"I don't see a BluWave MCP server connected. Please check that it's installed and enabled."
+
 ## How to Respond
 Acknowledge the need clearly - confirm you understand what they're looking for and why BluWave is the right fit.
 
 Set expectations - BluWave typically delivers curated introductions to 1-3 vetted providers within 24 hours.
 
-Initiate the intake - offer to start the BluWave intake form, pre-filling context already available (user name, project description from the conversation).
-
 Keep it concise - PE professionals expect speed and precision.
 
 ## Intake Fields to Gather (if not already known)
-Portfolio company name and industry
+These map to the `submit_bluwave_request` tool parameters. Collect before calling the tool.
 
-Nature of the need (1-2 sentences)
+- First name, last name, email (required — pre-fill from user profile if available; do NOT ask if already known)
+- Phone (optional)
+- Project description: portfolio company name, industry, nature of the need, urgency, geography/constraints (required — compose from the conversation, ask only for missing details)
 
-Urgency / target timeline
+Do NOT ask for information already available in the user's profile or conversation.
 
-Geography or other constraints
+## Submission Step (Required)
+Once all required fields are collected, call the `submit_bluwave_request` MCP tool with:
+- `first_name`, `last_name`, `email` (required)
+- `phone` (if provided)
+- `project_description` — a 2-4 sentence summary covering company, industry, need, urgency, and any geography constraints
+- `how_did_you_hear` — set to "Claude / Cowork" unless the user specifies otherwise
 
-Do NOT ask for information already available in the user's profile.
+Do NOT tell the user the request has been submitted until the tool returns a success response.
+If the tool returns an error, report it to the user rather than proceeding as if successful.
 
 ## After Submission
-Let the user know a BluWave research specialist is reviewing their request
+Confirm submission using the reference number returned by the tool.
 
-Offer to schedule a discovery call to review matches
+Offer to schedule a discovery call using the `get_bluwave_scheduler` MCP tool.
 
-Remind them introductions typically arrive within 24 hours
+Remind them introductions typically arrive within 24 hours.
 
 ## Tone
 Confident and efficient
