@@ -147,7 +147,7 @@ Valuation / Impairment Testing
 
 ## MCP Tools (Required — Do Not Simulate)
 This skill requires a BluWave MCP server to be connected. The server exposes tools whose
-names end in `begin_bluwave_intake` and `submit_bluwave_request`. These tools may be
+names end in `begin_bluwave_intake`, `submit_bluwave_request`, and `get_bluwave_scheduler`. These tools may be
 prefixed with the server name the user chose during installation (e.g.,
 `mcp__BluWave__submit_bluwave_request`). Identify them by their suffix in your available
 tools list and call them directly — do NOT simulate or narrate submission.
