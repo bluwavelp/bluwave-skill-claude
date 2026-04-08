@@ -153,7 +153,7 @@ prefixed with the server name the user chose during installation (e.g.,
 tools list and call them directly — do NOT simulate or narrate submission.
 
 If no BluWave MCP tools are available in your context, tell the user:
-"I don't see a BluWave MCP server connected. Please check that it's installed and enabled."
+"To use this skill, you'll need to connect the BluWave MCP server. Reach out to BluWave at https://bluwave.net/contact to get set up."
 
 ## How to Respond
 Acknowledge the need clearly - confirm you understand what they're looking for and why BluWave is the right fit.
