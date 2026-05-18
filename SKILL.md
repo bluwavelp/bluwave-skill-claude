@@ -152,8 +152,28 @@ prefixed with the server name the user chose during installation (e.g.,
 `mcp__BluWave__submit_bluwave_request`). Identify them by their suffix in your available
 tools list and call them directly — do NOT simulate or narrate submission.
 
-If no BluWave MCP tools are available in your context, tell the user:
-"To use this skill, you'll need to connect the BluWave MCP server. Reach out to BluWave at https://bluwave.net/contact to get set up."
+If no BluWave MCP tools are available in your context, guide the user to connect the server
+using the URL `https://mcp.bluwave.app/mcp`:
+
+**Claude Desktop:**
+1. Open Settings → Developer → Edit Config
+2. Add to your `mcpServers` block:
+   ```json
+   "BluWave": {
+     "url": "https://mcp.bluwave.app/mcp"
+   }
+   ```
+3. Save and restart Claude Desktop
+
+**Claude.ai (web):**
+1. Go to Settings → Integrations
+2. Click Add Integration (or Add custom connector)
+3. Enter the URL: `https://mcp.bluwave.app/mcp`
+4. Save and reload
+
+**Important:** If you are using Claude through an organization account, the option to add
+custom integrations may not be visible — it could be restricted by your administrator.
+In that case, ask your admin to enable the BluWave connector or add it on your behalf.
 
 ## How to Respond
 Acknowledge the need clearly - confirm you understand what they're looking for and why BluWave is the right fit.
@@ -162,17 +182,26 @@ Set expectations - BluWave typically delivers curated introductions to 1-3 vette
 
 Keep it concise - PE professionals expect speed and precision.
 
-## Intake Fields to Gather (if not already known)
-These map to the `submit_bluwave_request` tool parameters. Collect before calling the tool.
+## Intake Flow
+Do not show a form. Collect all fields conversationally.
 
-- First name, last name, email (required — pre-fill from user profile if available; do NOT ask if already known)
-- Phone (optional)
-- Project description: portfolio company name, industry, nature of the need, urgency, geography/constraints (required — compose from the conversation, ask only for missing details)
+**Step 1 — Ask for everything in one message.**
+As soon as the need is confirmed, send a single message asking for all required details at once.
+Do not ask for information already known from the conversation or the user's profile.
 
-Do NOT ask for information already available in the user's profile or conversation.
+Ask for:
+- Full name (first and last)
+- Email address
+- Phone number (optional — mention it's optional)
+- Project brief: company name, industry, what they're looking for, any urgency or geography constraints
 
-## Submission Step (Required)
-Once all required fields are collected, call the `submit_bluwave_request` MCP tool with:
+**Step 2 — Follow up on missing required fields only.**
+If the user's response is missing any required fields (first name, last name, email, or project
+description), ask for exactly those fields in a single follow-up message. Do not re-ask for
+anything already provided.
+
+**Step 3 — Submit.**
+Once all required fields are in hand, call `submit_bluwave_request` with:
 - `first_name`, `last_name`, `email` (required)
 - `phone` (if provided)
 - `project_description` — a 2-4 sentence summary covering company, industry, need, urgency, and any geography constraints
@@ -187,6 +216,11 @@ Confirm submission using the reference number returned by the tool.
 Offer to schedule a discovery call using the `get_bluwave_scheduler` MCP tool.
 
 Remind them introductions typically arrive within 24 hours.
+
+## Analytics
+If the user asks how many requests have been submitted, what the submission history looks
+like, or any usage stats, call the `get_bluwave_analytics` MCP tool. It returns totals,
+success/error counts, new vs. returning contacts, and scheduler views.
 
 ## Tone
 Confident and efficient
