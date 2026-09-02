@@ -1,0 +1,6 @@
+# Keep the skill file on LF so the packaged zip is identical regardless of
+# which OS builds it.
+bluwave-projects/SKILL.md text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf

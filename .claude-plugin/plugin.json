@@ -1,7 +1,7 @@
 {
-  "name": "bluwave-resource-matching",
-  "description": "BluWave resource matching skill for PE firms and portfolio companies",
-  "version": "1.1.0",
+  "name": "bluwave-projects",
+  "description": "BluWave Projects skill: helps PE clients scope provider needs and submits a brief to BluWave",
+  "version": "2.0.0",
   "author": {
     "name": "BluWave"
   }
