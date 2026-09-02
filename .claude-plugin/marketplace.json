@@ -4,12 +4,12 @@
     "name": "BluWave"
   },
   "metadata": {
-    "description": "BluWave resource matching skill for PE firms and portfolio companies",
-    "version": "1.1.0"
+    "description": "BluWave Projects skill: helps PE clients scope provider needs and submits a brief to BluWave",
+    "version": "2.0.0"
   },
   "plugins": [
     {
-      "name": "bluwave-resource-matching",
+      "name": "bluwave-projects",
       "source": ".",
       "description": "Recognizes when you need external expertise and initiates a BluWave engagement to connect you with vetted service providers"
     }

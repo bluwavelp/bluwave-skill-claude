@@ -1,0 +1,58 @@
+name: Package skill
+
+# Builds bluwave-projects.zip from the bluwave-projects/ folder and publishes it
+# as a GitHub Release asset. The zip has exactly the structure Claude and ChatGPT
+# expect: one top-level folder (bluwave-projects/) containing SKILL.md.
+#
+# Runs on every push to main. The "latest" release is always overwritten, so
+# the website can link to a stable URL:
+#   https://github.com/bluwavelp/bluwave-skill-claude/releases/latest/download/bluwave-projects.zip
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "bluwave-projects/**"
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build zip
+        run: |
+          set -euo pipefail
+          test -f bluwave-projects/SKILL.md
+          rm -f bluwave-projects.zip
+          zip -r -X bluwave-projects.zip bluwave-projects -x '*.DS_Store'
+          echo "Archive contents:"
+          unzip -l bluwave-projects.zip
+
+      - name: Validate archive
+        run: |
+          set -euo pipefail
+          # Exactly one top-level folder, SKILL.md directly inside it, no junk.
+          unzip -Z1 bluwave-projects.zip | grep -q '^bluwave-projects/SKILL.md$'
+          if unzip -Z1 bluwave-projects.zip | grep -q '__MACOSX'; then
+            echo "__MACOSX folder found in archive" >&2; exit 1
+          fi
+
+      - name: Publish as latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: BluWave Projects skill (latest)
+          body: |
+            Built automatically from `bluwave-projects/SKILL.md` on the `main` branch.
+
+            Upload `bluwave-projects.zip` to Claude (Customize > Skills > Upload a skill)
+            or ChatGPT (Skills > Create > Upload from your computer).
+          files: bluwave-projects.zip
+          prerelease: false
+          make_latest: true

@@ -1,48 +1,48 @@
-# Installing the BluWave Skill in Claude
+# Installing the BluWave Projects Skill
 
-This guide walks you through connecting the BluWave Agent Skill so that Claude can recommend and initiate BluWave engagements directly in your conversations.
+This guide walks you through connecting BluWave to Claude or ChatGPT so the assistant can scope a provider need with you and submit it to the BluWave team without leaving the chat.
 
-**Prerequisites:** A Claude Pro or Team plan.
-
----
-
-## Step 1 — Connect the BluWave MCP Server
-
-The MCP server is what allows Claude to actually submit requests to BluWave. You'll need a setup link from the BluWave team to complete this step.
-
-If you haven't received one, contact BluWave at [bluwave.net/contact](https://bluwave.net/contact).
-
-Once you have your setup link:
-
-1. Open Claude and go to **Settings** > **Integrations**.
-2. Click **Add custom integration**.
-3. Paste your BluWave setup link and confirm.
+You will need two things: the **BluWave MCP connector** (which lets the assistant submit requests) and the **BluWave Projects skill file** (which teaches the assistant when and how to help). Download the skill file, `bluwave-projects.zip`, from [bluwave.net/bluwave-connectors](https://bluwave.net/bluwave-connectors).
 
 ---
 
-## Step 2 — Install the Skill
+## Claude
 
-1. Open Claude and go to **Settings** > **Skills**.
-2. Click **Add Skill**, then choose **Upload a skill**.
-3. Select the `SKILL.md` file provided by BluWave.
-4. Confirm the upload.
+### Individual users
+
+1. **Connect the MCP server.** In Claude, go to **Customize > Connectors**, click **+ Add custom connector**, and paste the BluWave MCP connector URL: `https://mcp.bluwave.app/mcp`. Complete the sign-in when prompted.
+2. **Install the skill.** Go to **Customize > Skills**, click **Create Skill > Upload a skill**, and select `bluwave-projects.zip`.
+
+### Organization admins
+
+1. Go to **Organization settings > Connectors** and add the BluWave MCP connector URL: `https://mcp.bluwave.app/mcp`.
+2. Go to **Organization settings > Skills**, click **+ Add**, and upload `bluwave-projects.zip`.
+
+---
+
+## ChatGPT
+
+1. **Connect the MCP server.** In ChatGPT, go to **Settings > Connectors** (or **Apps & Connectors**), choose **Create** or **Add custom connector**, and paste the BluWave MCP connector URL: `https://mcp.bluwave.app/mcp`.
+2. **Install the skill.** Go to **Skills**, click **Create**, choose **Upload from your computer**, and select `bluwave-projects.zip`.
+
+If ChatGPT reports "Archive must include at least one SKILL.md file at the skill root," the file you downloaded has been re-zipped. Download a fresh copy from the link above, or contact BluWave.
 
 ---
 
 ## How it works
 
-Once both are installed, Claude will:
+Once both pieces are installed, the assistant will:
 
-1. **Recognize** when you're discussing a need for external expertise (interim executives, due diligence, consultants, etc.)
-2. **Gather** the relevant details from your conversation
-3. **Submit** a request to BluWave's research team on your behalf
-4. **Confirm** with a reference number — the team typically delivers curated provider introductions within 24 hours
+1. **Recognize** when you are discussing a need for external expertise (interim executives, due diligence, consultants, and so on)
+2. **Ask** a few quick questions to understand the situation, the way a PE-savvy peer would
+3. **Submit** a structured brief to the BluWave team on your behalf
+4. **Confirm** with a reference number. The team typically delivers curated provider introductions within 24 hours
 
 ---
 
 ## Updating
 
-The MCP server updates automatically. When BluWave releases an updated version of the skill, you'll receive a new `SKILL.md` file. To update, remove the existing BluWave skill from **Settings** > **Skills** and repeat Step 2.
+The MCP connector updates automatically. When BluWave releases a new version of the skill, download the new `bluwave-projects.zip`, remove the existing BluWave skill from your Skills settings, and upload the new file.
 
 ---
 
